@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.util.Random;
 import java.io.IOException;
 import java.io.FileReader;
+
 
 public class Program {
 	public static void main(String[] args){
@@ -11,84 +13,83 @@ public class Program {
 	}
 	static void hangmanPrinter (int mistakeCount) {
 		switch(mistakeCount) {
-		case 0: 	
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  |   |");
-	        System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 1:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 2:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println("  |   |");
-			System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 3:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println(" /|   |");
-			System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 4:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println(" /|\\  |");
-			System.out.println("      |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 5:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println(" /|\\  |");
-			System.out.println("  |   |");
-			System.out.println("      |");
-			System.out.println("=========");
-			break;
-		case 6:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println(" /|\\  |");
-			System.out.println("  |   |");
-			System.out.println(" /    |");
-			System.out.println("=========");
-			break;
-		case 7:
-			System.out.println("  +---+");
-			System.out.println("  |   |");
-			System.out.println("  0   |");
-	        System.out.println(" /|\\  |");
-			System.out.println("  |   |");
-			System.out.println(" / \\  |");
-			System.out.println("=========");
-			break;
+			case 0: 	
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  |   |");
+		        System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 1:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 2:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println("  |   |");
+				System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 3:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println(" /|   |");
+				System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 4:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println(" /|\\  |");
+				System.out.println("      |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 5:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println(" /|\\  |");
+				System.out.println("  |   |");
+				System.out.println("      |");
+				System.out.println("=========");
+				break;
+			case 6:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println(" /|\\  |");
+				System.out.println("  |   |");
+				System.out.println(" /    |");
+				System.out.println("=========");
+				break;
+			case 7:
+				System.out.println("  +---+");
+				System.out.println("  |   |");
+				System.out.println("  0   |");
+		        System.out.println(" /|\\  |");
+				System.out.println("  |   |");
+				System.out.println(" / \\  |");
+				System.out.println("=========");
+				break;
 		}
 	}
-	static ArrayList<Character> arrayPrinter (String word) {
-		int lengthOfWord = word.length();
+	static ArrayList<Character> arrOfStarsCreater(int length) {
 		ArrayList<Character> arrToReturn = new ArrayList<Character>();
-		for (int i = 0; i <= lengthOfWord - 1; i++) {
+		for (int i = 0; i <= length - 1; i++) {
 			arrToReturn.add('*');
 		}
 		return arrToReturn;
@@ -111,8 +112,8 @@ public class Program {
 		
 	}
 	static boolean startGame() {
+		System.out.println("1.Start new game\n2.Exit");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Welcome to hangman game\n1.Start new game\n2.Exit");
 		int option;
 		System.out.println("Input option");
 		option = sc.nextInt();
@@ -120,51 +121,55 @@ public class Program {
 			case 1:
 				return true;
 			case 2:
-				System.exit(0);
-				break;
+				System.out.println("Shut down the game. Good luck!");
+				return false;
 		}
 		return false;
 	}
-	static void game(){
-		String word;
-		word = wordGenerator();
+	static ArrayList<Character> arrOfLetters(String word) {
+		ArrayList<Character> outputArrList = new ArrayList<Character>();
 		char[] temp = word.toCharArray();
-		ArrayList<Character> arrOfWord = new ArrayList<Character>();
-		ArrayList<Character> arrOfMistakeLetter = new ArrayList<Character>();
 		for (char symb : temp) {
-			arrOfWord.add(symb);
+			outputArrList.add(symb);
 		}
-		ArrayList<Character> arrOfStars;
-		arrOfStars = arrayPrinter(word);
+		return outputArrList;
+	}
+	static void game(){
+		String word = wordGenerator();
+		List<Character> arrOfWord = arrOfLetters(word);
+		List<Character> arrOfIncorrectLetter = new ArrayList<Character>();
+		List<Character> arrOfCorrectLetter = new ArrayList<Character>();
+		List<Character> arrOfStars = arrOfStarsCreater(arrOfWord.size());
 		int mistakeCount = 0;
 		String inputText;
 		char inputChar;
 		boolean flag = false;
 		Scanner sc = new Scanner(System.in, "windows-1251");
+		System.out.println("Welcome to hangman game");
 		flag = startGame();
 		while (flag) {
 			hangmanPrinter(mistakeCount);
 			System.out.println(arrOfStars);
 			System.out.println("Input the letter");
 			inputText = sc.next().toLowerCase();
-			if (inputText.length() != 1) {
+			inputChar = inputText.charAt(0);
+			if (inputText.length() != 1 || "1234567890".indexOf(inputChar) != -1) {
 				System.out.println("Incorrect input. Try again");
-				continue;
+				mistakeCount++;
 			}
 			else {
-				inputChar = inputText.charAt(0);
-
 				int indexOfWord = arrOfWord.indexOf(inputChar);
 				if (indexOfWord == -1) {
 					System.out.println("Error");
-					if (!arrOfMistakeLetter.contains(inputChar)) {
-						arrOfMistakeLetter.add(inputChar);
+					if (!arrOfIncorrectLetter.contains(inputChar)) {
+						arrOfIncorrectLetter.add(inputChar);
 						mistakeCount++;	
 					}
 					else {
 						System.out.println("Letter already used");
 					}
 				} else {
+					arrOfCorrectLetter.add(inputChar);
 					while (arrOfWord.contains(inputChar)) {
 						indexOfWord = arrOfWord.indexOf(inputChar);
 						arrOfStars.set(indexOfWord, inputChar);
