@@ -1,5 +1,6 @@
-package com.muted987;
+package main.java.muted987.hangman;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.io.FileReader;
 
 
-public class Program {
+public class Main {
 	public static void main(String[] args){
 		startGame();
 	}
@@ -25,7 +26,7 @@ public class Program {
 		
 		Random rnd = new Random();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/resources/english_nouns.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/english_nouns.txt"));
 			String line;
 			while ((line = br.readLine()) != null) {
 				words.add(line);
@@ -50,7 +51,7 @@ public class Program {
 				System.exit(1);
 		}
 	}
-	static ArrayList<Character> arrOfLetters(String word) {
+	static ArrayList<Character> arrOfLetters(@NotNull String word) {
 		ArrayList<Character> outputArrList = new ArrayList<>();
 		char[] temp = word.toCharArray();
 		for (char symbol : temp) {

@@ -1,4 +1,4 @@
-package com.muted987;
+package main.java.muted987.hangman;
 
 public class HangmanPrinter {
 	public String hangmanPrinter (int mistakeCount) {
