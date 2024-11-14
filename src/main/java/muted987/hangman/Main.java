@@ -21,12 +21,12 @@ public class Main {
 		}
 		return arrToReturn;
 	}
-	static String wordGenerator() {
+	static String wordGenerator(String language) {
 		ArrayList<String> words = new ArrayList<>();
 		
 		Random rnd = new Random();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/english_nouns.txt"));
+			BufferedReader br = (language.equals("English")) ? new BufferedReader(new FileReader("src/main/resources/english_nouns.txt")) : new BufferedReader(new FileReader("src/main/resources/russian_nouns.txt"));
 			String line;
 			while ((line = br.readLine()) != null) {
 				words.add(line);
@@ -45,7 +45,10 @@ public class Main {
 		option = sc.nextInt();
 		switch (option) {
 			case 1:
-				game();
+				System.out.println("Choose language\n1. Russian\n2. English");
+				option = sc.nextInt();
+				String language = (option == 1) ? "Russian" : "English";
+				game(language);
 			case 2:
 				System.out.println("Shut down the game. Good luck!");
 				System.exit(1);
@@ -59,9 +62,9 @@ public class Main {
 		}
 		return outputArrList;
 	}
-	static void game(){
+	static void game(@NotNull String language){
 		HangmanPrinter hangman = new HangmanPrinter();
-		String word = wordGenerator();
+		String word = wordGenerator(language);
 		List<Character> arrOfWord = arrOfLettersCreator(word);
 		List<Character> arrOfIncorrectLetter = new ArrayList<>();
 		List<Character> arrOfCorrectLetter = new ArrayList<>();
@@ -70,7 +73,6 @@ public class Main {
 		String inputText;
 		char inputChar;
 		Scanner sc = new Scanner(System.in);
-		System.out.println(word);
 		System.out.println("Welcome to hangman game");
 		while (true) {
             System.out.println(hangman.hangmanPrinter(mistakeCount));
