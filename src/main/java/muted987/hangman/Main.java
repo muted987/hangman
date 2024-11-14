@@ -51,7 +51,7 @@ public class Main {
 				System.exit(1);
 		}
 	}
-	static ArrayList<Character> arrOfLetters(@NotNull String word) {
+	static ArrayList<Character> arrOfLettersCreator(@NotNull String word) {
 		ArrayList<Character> outputArrList = new ArrayList<>();
 		char[] temp = word.toCharArray();
 		for (char symbol : temp) {
@@ -62,7 +62,7 @@ public class Main {
 	static void game(){
 		HangmanPrinter hangman = new HangmanPrinter();
 		String word = wordGenerator();
-		List<Character> arrOfWord = arrOfLetters(word);
+		List<Character> arrOfWord = arrOfLettersCreator(word);
 		List<Character> arrOfIncorrectLetter = new ArrayList<>();
 		List<Character> arrOfCorrectLetter = new ArrayList<>();
 		List<Character> arrOfStars = arrOfStarsCreator(arrOfWord.size());
@@ -70,19 +70,30 @@ public class Main {
 		String inputText;
 		char inputChar;
 		Scanner sc = new Scanner(System.in);
+		System.out.println(word);
 		System.out.println("Welcome to hangman game");
 		while (true) {
             System.out.println(hangman.hangmanPrinter(mistakeCount));
 			System.out.println(arrOfStars);
+			System.out.println(arrOfIncorrectLetter + " - incorrect letters");
+			System.out.println(arrOfCorrectLetter + " - correct letters");
 			System.out.println("Input the letter");
 			inputText = sc.next().toLowerCase();
 			inputChar = inputText.charAt(0);
-			if (inputText.length() != 1 || "1234567890,!@#$%^&()_+|/\\<>.".indexOf(inputChar) != -1 || !arrOfIncorrectLetter.contains(inputChar)) {
-				System.out.println("Incorrect input. Try again");
-				arrOfIncorrectLetter.add(inputChar);
-				mistakeCount++;
+			if (isInputValid(inputText)) {
+				if (arrOfIncorrectLetter.contains(inputChar)) {
+					mistakeCount++;
+					System.out.println("2");
+					System.out.println("Letter already used");
+				}
+				else {
+					arrOfIncorrectLetter.add(inputChar);
+					System.out.println("Incorrect input. Try again");
+					mistakeCount++;
+				}
 			}
 			else {
+				System.out.println("3");
 				int indexOfWord = arrOfWord.indexOf(inputChar);
 				if (indexOfWord == -1) {
 					System.out.println("Error");
@@ -119,6 +130,10 @@ public class Main {
 				startGame();
 			}
 		}
+	}
+	static boolean isInputValid(String inputText) {
+		char inputChar = inputText.charAt(0);
+		return (inputText.length() != 1 || "1234567890,!@#$%^&()_+|/\\<>.".indexOf(inputChar) != -1);
 	}
 }
 
